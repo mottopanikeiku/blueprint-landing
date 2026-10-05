@@ -122,7 +122,7 @@ export function DetailTitle({ x, y, n, sheet, title, scale, size = 1, width = 90
       <text x={r} y={r * 0.62} textAnchor="middle" fontSize={15 * size} className="t-mono dim">
         {sheet}
       </text>
-      <text x={2 * r + 22 * size} y={-8 * size} fontSize={36 * size} className="t-serif">
+      <text x={2 * r + 22 * size} y={-10 * size} fontSize={30 * size} className="t-display">
         {title}
       </text>
       <path d={`M${2 * r} 0H${width}`} className="ln heavy" />

@@ -44,10 +44,15 @@ export function TitleBlock() {
     <g id="d-title" transform={`translate(${x} ${y})`}>
       <rect width={w} height={h} className="ln heavy" />
 
-      <text x={24} y={150} fontSize={88} className="t-serif">
-        [Product]
+      <g transform="translate(24 88) scale(2.6)" className="tb-mark">
+        <path d="M0 10H4M16 10H20M10 0V4M10 16V20" className="tb-mark-tick" />
+        <rect x="4" y="4" width="12" height="12" className="tb-mark-box" />
+        <rect x="8" y="8" width="4" height="4" className="tb-mark-dot" />
+      </g>
+      <text x={92} y={130} fontSize={44} className="t-display">
+        [PRODUCT]
       </text>
-      <text x={26} y={222} fontSize={46} className="t-serif italic">
+      <text x={26} y={214} fontSize={38} className="t-display italic">
         Drafting, automated.
       </text>
       {['AI THAT TURNS SKETCHES AND DRAWING', 'SETS INTO CLEAN, LAYERED CAD. THE', 'DRAFTING THAT TAKES DAYS, IN MINUTES.'].map(
@@ -138,7 +143,7 @@ export function TitleBlock() {
       </g>
 
       <Head y={top(R.sheet)} text="SHEET" />
-      <text x={22} y={top(R.sheet) + 220} fontSize={190} className="t-serif">
+      <text x={20} y={top(R.sheet) + 200} fontSize={112} className="t-display">
         A-000
       </text>
       <text x={24} y={top(R.sheet) + 300} fontSize={17} className="t-mono" letterSpacing="0.12em">

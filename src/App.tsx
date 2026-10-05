@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Blueprint } from './blueprint/Blueprint';
 import { AccessForm } from './components/AccessForm';
 import { AppChrome } from './components/AppChrome';
+import { Wordmark } from './components/Brand';
 import { SECTIONS, type SectionDef } from './content';
 import { buildChoreography } from './stage/choreography';
 
@@ -129,8 +130,7 @@ export function App() {
 
       <header className="nav">
         <button className="wordmark" onClick={() => jump('top')}>
-          [Product]
-          <span>Drafting, automated.</span>
+          <Wordmark />
         </button>
         <button className="btn small" onClick={() => jump('access')}>
           Request early access

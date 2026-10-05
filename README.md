@@ -28,8 +28,11 @@ The pencil sketch, the CAD and the PDF underlay all come from the same plan geom
 - Vite, React 19, TypeScript
 - GSAP ScrollTrigger for the scroll-scrubbed reveals. Lenis for smooth scrolling (turned off when the user prefers
   reduced motion).
-- Fonts are self-hosted with Fontsource: Instrument Serif for headlines, Instrument Sans for body text, IBM Plex Mono
-  for drawing text, and Caveat for the handwriting on the sketch.
+- Fonts are self-hosted with Fontsource. Archivo, a variable font, is the brand face: its expanded width (125%) is used
+  for display type and its normal width for body text. IBM Plex Mono is used for drawing text, and Caveat for the
+  handwriting on the sketch.
+- Brand mark (`src/components/Brand.tsx`): a CAD endpoint-snap marker, meaning snapped to the source and exact. The
+  red-orange accent (`--accent`) is redline red.
 
 ## Run it
 

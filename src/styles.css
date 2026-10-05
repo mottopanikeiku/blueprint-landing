@@ -1,23 +1,29 @@
 :root {
-  --sheet: #0f3768;
-  --deep: #071a33;
-  --ink: #eaf2ff;
-  --ink-2: rgba(234, 242, 255, 0.64);
-  --ink-3: rgba(234, 242, 255, 0.26);
+  --bg: #000000;
+  --sheet: #0a0a0a;
+  --deep: #0a0a0a;
+  --ink-rgb: 237 235 230;
+  --ink: rgb(var(--ink-rgb));
+  --ink-2: rgb(var(--ink-rgb) / 0.62);
+  --ink-3: rgb(var(--ink-rgb) / 0.24);
   --grid-minor: rgba(255, 255, 255, 0.035);
-  --grid-major: rgba(255, 255, 255, 0.08);
-  --red: #ff7b5c;
-  --amber: #ffc56b;
-  --cyan: #7fd6ff;
+  --grid-major: rgba(255, 255, 255, 0.075);
+  --red: #ff5f3a;
+  --accent: var(--red);
+  --amber: #ffbf5e;
+  --cyan: #74d3ff;
   --pink: #ff9fd0;
-  --green: #9be8b4;
-  --paper: #f2ede2;
+  --green: #8fe3a9;
+  --paper: #f1ede4;
   --pencil: #2d3036;
+  --panel: rgba(12, 12, 12, 0.97);
+  --chrome-bg: rgba(12, 12, 13, 0.96);
   --bezel: 26px;
   --stand: 260px;
 
-  --serif: 'Instrument Serif', 'Times New Roman', serif;
-  --sans: 'Instrument Sans Variable', 'Instrument Sans', system-ui, sans-serif;
+  /* One family carries the brand: expanded for display, normal width for reading. */
+  --display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --sans: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, monospace;
   --hand: 'Caveat', cursive;
 }
@@ -47,7 +53,7 @@ body {
   margin: 0;
   color: var(--ink);
   font-family: var(--sans);
-  background: radial-gradient(120% 90% at 60% 40%, #10243d 0%, #060d18 55%, #03060b 100%) fixed;
+  background: radial-gradient(120% 90% at 60% 40%, #141414 0%, #060606 55%, #000 100%) fixed;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -62,7 +68,7 @@ button {
 }
 
 ::selection {
-  background: var(--amber);
+  background: var(--accent);
   color: var(--deep);
 }
 
@@ -78,12 +84,12 @@ button {
   height: calc(100vh + var(--bezel) * 2);
   padding: var(--bezel);
   border-radius: 44px;
-  background: linear-gradient(180deg, #17191e, #0b0c0f);
+  background: linear-gradient(180deg, #1c1c1f, #0d0d0f);
   box-shadow:
-    inset 0 0 0 1.5px #3b3f47,
-    inset 0 0 0 5px #121317,
-    0 80px 160px rgba(0, 0, 0, 0.55),
-    0 30px 60px rgba(0, 0, 0, 0.4);
+    inset 0 0 0 1.5px #55555c,
+    inset 0 0 0 5px #151517,
+    0 0 140px rgba(255, 255, 255, 0.05),
+    0 80px 160px rgba(0, 0, 0, 0.7);
   transform-origin: 50% 50%;
   will-change: transform;
   z-index: 0;
@@ -137,7 +143,7 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(130% 100% at 50% 45%, transparent 55%, rgba(4, 14, 30, 0.55) 100%);
+  background: radial-gradient(130% 100% at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 .grain {
@@ -160,14 +166,31 @@ button {
 .t-mono {
   font-family: var(--mono);
 }
-.blueprint .t-serif {
-  font-family: var(--serif);
+.blueprint .t-display {
+  font-family: var(--display);
+  font-stretch: 125%;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 .blueprint .t-sans {
   font-family: var(--sans);
 }
 .blueprint .italic {
   font-style: italic;
+  font-stretch: 100%;
+  font-weight: 300;
+}
+.tb-mark-tick {
+  stroke: var(--ink-2);
+  stroke-width: 1.4;
+}
+.tb-mark-box {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.8;
+}
+.tb-mark-dot {
+  fill: var(--accent);
 }
 .blueprint .t-hand {
   font-family: var(--hand);
@@ -313,7 +336,7 @@ button {
   fill: var(--paper);
 }
 .paper-shadow {
-  fill: rgba(2, 10, 24, 0.45);
+  fill: rgba(0, 0, 0, 0.65);
 }
 .tape {
   fill: rgba(255, 246, 214, 0.6);
@@ -404,7 +427,7 @@ button {
   stroke-dasharray: 7 6;
 }
 .callout {
-  fill: rgba(7, 26, 51, 0.9);
+  fill: rgba(10, 10, 10, 0.94);
   stroke: var(--amber);
   stroke-width: 1.6;
 }
@@ -582,22 +605,20 @@ button {
   align-items: center;
   gap: 28px;
   padding: 0 22px;
-  background: rgba(6, 18, 36, 0.94);
-  border-bottom: 1px solid rgba(234, 242, 255, 0.12);
+  background: var(--chrome-bg);
+  border-bottom: 1px solid rgb(var(--ink-rgb) / 0.12);
   font-size: 17px;
 }
 .chrome-brand {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--serif);
-  font-size: 26px;
-}
-.chrome-mark {
-  width: 22px;
-  height: 22px;
-  border: 2px solid var(--ink);
-  box-shadow: inset 0 0 0 4px rgba(6, 18, 36, 1), inset 0 0 0 7px var(--ink);
+  font-family: var(--display);
+  font-stretch: 125%;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 .chrome-crumbs {
   display: flex;
@@ -615,7 +636,7 @@ button {
   font-size: 15px;
   color: var(--ink);
   padding: 4px 10px;
-  border: 1px solid rgba(234, 242, 255, 0.18);
+  border: 1px solid rgb(var(--ink-rgb) / 0.18);
 }
 .chrome-crumbs .file.out {
   border-color: var(--green);
@@ -627,7 +648,7 @@ button {
 }
 .chrome-btn {
   padding: 10px 18px;
-  border: 1px solid rgba(234, 242, 255, 0.25);
+  border: 1px solid rgb(var(--ink-rgb) / 0.25);
   font-size: 16px;
 }
 .chrome-btn.primary {
@@ -642,18 +663,18 @@ button {
   top: 64px;
   bottom: 40px;
   padding: 20px;
-  background: rgba(6, 18, 36, 0.9);
+  background: var(--chrome-bg);
   overflow: hidden;
 }
 .chrome-left {
   left: 0;
   width: 290px;
-  border-right: 1px solid rgba(234, 242, 255, 0.12);
+  border-right: 1px solid rgb(var(--ink-rgb) / 0.12);
 }
 .chrome-right {
   right: 0;
   width: 310px;
-  border-left: 1px solid rgba(234, 242, 255, 0.12);
+  border-left: 1px solid rgb(var(--ink-rgb) / 0.12);
 }
 .chrome-h {
   font-family: var(--mono);
@@ -674,7 +695,7 @@ button {
   grid-template-columns: 16px 1fr;
   column-gap: 12px;
   padding: 7px 0;
-  border-bottom: 1px solid rgba(234, 242, 255, 0.06);
+  border-bottom: 1px solid rgb(var(--ink-rgb) / 0.06);
 }
 .chrome-left .sw {
   width: 12px;
@@ -692,7 +713,7 @@ button {
 }
 .chrome-card {
   padding: 14px;
-  border: 1px solid rgba(234, 242, 255, 0.14);
+  border: 1px solid rgb(var(--ink-rgb) / 0.14);
   margin-bottom: 12px;
 }
 .chrome-card-title {
@@ -727,7 +748,7 @@ button {
 .chrome-thumbs .thumb {
   width: 84px;
   height: 56px;
-  border: 1px solid rgba(234, 242, 255, 0.25);
+  border: 1px solid rgb(var(--ink-rgb) / 0.25);
   background:
     linear-gradient(var(--ink-3), var(--ink-3)) 12px 12px / 2px 32px no-repeat,
     linear-gradient(var(--ink-3), var(--ink-3)) 12px 12px / 48px 2px no-repeat;
@@ -741,7 +762,7 @@ button {
   font-family: var(--mono);
   font-size: 14px;
   padding: 9px 0;
-  border-bottom: 1px solid rgba(234, 242, 255, 0.08);
+  border-bottom: 1px solid rgb(var(--ink-rgb) / 0.08);
 }
 .chrome-files li::before {
   content: '↓ ';
@@ -753,8 +774,8 @@ button {
   right: 0;
   bottom: 0;
   height: 40px;
-  background: rgba(6, 18, 36, 0.96);
-  border-top: 1px solid rgba(234, 242, 255, 0.12);
+  background: var(--chrome-bg);
+  border-top: 1px solid rgb(var(--ink-rgb) / 0.12);
 }
 
 .statusbar {
@@ -812,17 +833,30 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-family: var(--serif);
-  font-size: 28px;
+}
+.wordmark-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-stretch: 125%;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   line-height: 1;
 }
-.wordmark span {
+.wordmark-tag {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ink-2);
-  margin-top: 6px;
+  margin: 7px 0 0 30px;
+}
+.brand-mark {
+  flex: none;
+  display: block;
 }
 
 .btn {
@@ -845,7 +879,7 @@ button {
   border-color: var(--ink);
 }
 .btn.outline {
-  background: rgba(7, 26, 51, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(6px);
 }
 .btn.primary {
@@ -863,13 +897,13 @@ button {
 .btn.small {
   padding: 11px 16px;
   font-size: 13.5px;
-  background: rgba(7, 26, 51, 0.55);
+  background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(8px);
 }
 .btn:focus-visible,
 .rail button:focus-visible,
 .wordmark:focus-visible {
-  outline: 2px solid var(--amber);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -939,8 +973,8 @@ button {
   color: var(--ink);
 }
 .rail li.on .rail-no::after {
-  background: var(--amber);
-  border-color: var(--amber);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 /* ------------------------------------------------------------------ */
@@ -968,7 +1002,7 @@ main {
   position: absolute;
   inset: -18% -12%;
   z-index: -1;
-  background: radial-gradient(closest-side, rgba(7, 26, 51, 0.82), rgba(7, 26, 51, 0.5) 60%, transparent);
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.55) 60%, transparent);
 }
 .hero-kicker {
   font-family: var(--mono);
@@ -979,21 +1013,29 @@ main {
   margin: 0 0 28px;
 }
 .hero h1 {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(64px, 11vw, 176px);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
+  font-family: var(--display);
+  font-stretch: 125%;
+  font-weight: 700;
+  font-size: clamp(44px, 8.2vw, 138px);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
   margin: 0;
 }
 .hero h1 em,
 .card h2 em {
   font-style: italic;
+  font-stretch: 100%;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.hero h1 em {
+  text-transform: none;
 }
 .hero-lede {
-  font-size: clamp(17px, 1.6vw, 21px);
+  font-size: clamp(17px, 1.5vw, 20px);
   line-height: 1.55;
-  color: rgba(234, 242, 255, 0.86);
+  color: rgb(var(--ink-rgb) / 0.82);
   max-width: 36em;
   margin: 30px auto 38px;
 }
@@ -1021,17 +1063,17 @@ main {
   scrollbar-width: none;
   pointer-events: auto;
   padding: 32px 34px 30px;
-  background: linear-gradient(180deg, rgba(10, 37, 72, 0.8), rgba(7, 26, 51, 0.88));
-  backdrop-filter: blur(14px) saturate(1.15);
-  -webkit-backdrop-filter: blur(14px) saturate(1.15);
-  border: 1px solid rgba(234, 242, 255, 0.16);
+  background: var(--panel);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  border: 1px solid rgb(var(--ink-rgb) / 0.14);
 }
 .card::before {
   content: '';
   position: absolute;
   inset: 5px;
   pointer-events: none;
-  --t: rgba(234, 242, 255, 0.7);
+  --t: rgb(var(--ink-rgb) / 0.7);
   background:
     linear-gradient(var(--t), var(--t)) top left / 14px 1px,
     linear-gradient(var(--t), var(--t)) top left / 1px 14px,
@@ -1090,18 +1132,19 @@ main {
   color: var(--ink-2);
 }
 .card h2 {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(34px, 3.3vw, 50px);
-  line-height: 1.02;
-  letter-spacing: -0.01em;
+  font-family: var(--display);
+  font-stretch: 118%;
+  font-weight: 600;
+  font-size: clamp(28px, 2.6vw, 40px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
   margin: 0 0 18px;
   text-wrap: balance;
 }
 .card .body {
   font-size: 16px;
   line-height: 1.62;
-  color: rgba(234, 242, 255, 0.8);
+  color: rgb(var(--ink-rgb) / 0.78);
   margin: 0 0 18px;
 }
 .points {
@@ -1115,8 +1158,8 @@ main {
   padding: 11px 0 11px 40px;
   font-size: 15px;
   line-height: 1.55;
-  color: rgba(234, 242, 255, 0.78);
-  border-top: 1px solid rgba(234, 242, 255, 0.1);
+  color: rgb(var(--ink-rgb) / 0.76);
+  border-top: 1px solid rgb(var(--ink-rgb) / 0.1);
   counter-increment: pt;
 }
 .points li::before {
@@ -1126,7 +1169,7 @@ main {
   top: 19px;
   width: 9px;
   height: 9px;
-  border: 1px solid var(--amber);
+  border: 1px solid var(--accent);
 }
 ol.points li::before {
   content: counter(pt, decimal-leading-zero);
@@ -1138,7 +1181,7 @@ ol.points li::before {
   font-family: var(--mono);
   font-size: 11.5px;
   letter-spacing: 0.06em;
-  color: var(--amber);
+  color: var(--accent);
 }
 .points strong {
   color: var(--ink);
@@ -1149,13 +1192,14 @@ ol.points li::before {
   opacity: 0.32;
 }
 .foot {
-  font-family: var(--serif);
+  font-family: var(--display);
   font-style: italic;
-  font-size: 21px;
-  line-height: 1.32;
+  font-weight: 300;
+  font-size: 19px;
+  line-height: 1.38;
   margin: 18px 0 0;
   padding-top: 16px;
-  border-top: 1px dashed rgba(234, 242, 255, 0.25);
+  border-top: 1px dashed rgb(var(--ink-rgb) / 0.25);
 }
 
 /* form */
@@ -1208,7 +1252,7 @@ ol.points li::before {
 }
 .field input:focus,
 .field select:focus {
-  border-color: var(--amber);
+  border-color: var(--accent);
 }
 .chips {
   display: flex;
@@ -1241,7 +1285,7 @@ ol.points li::before {
   border-color: var(--ink);
 }
 .chip input:focus-visible + span {
-  outline: 2px solid var(--amber);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 .access-form .btn {
@@ -1254,7 +1298,8 @@ ol.points li::before {
   color: var(--red);
 }
 .form-done p {
-  font-family: var(--serif);
+  font-family: var(--display);
+  font-weight: 300;
   font-size: 24px;
   margin: 14px 0 0;
 }
@@ -1289,10 +1334,10 @@ ol.points li::before {
   .nav {
     padding: 14px 16px;
   }
-  .wordmark {
-    font-size: 22px;
+  .wordmark-name {
+    font-size: 16px;
   }
-  .wordmark span {
+  .wordmark-tag {
     display: none;
   }
   .card-wrap {

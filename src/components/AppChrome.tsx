@@ -1,4 +1,5 @@
 import { LAYERS, REVIEW } from '../blueprint/Schedules';
+import { BrandMark } from './Brand';
 
 /**
  * The product UI that appears around the drawing once we pull back out of the
@@ -9,7 +10,7 @@ export function AppChrome() {
     <div className="chrome" aria-hidden="true">
       <header className="chrome-top">
         <div className="chrome-brand">
-          <span className="chrome-mark" />
+          <BrandMark size={24} />
           [Product]
         </div>
         <div className="chrome-crumbs">

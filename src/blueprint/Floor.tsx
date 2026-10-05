@@ -58,7 +58,7 @@ export function FloorPlate() {
       <g className="unit-lbl fd">
         {units.map((u) => (
           <g key={u.id}>
-            <text x={u.center[0]} y={u.center[1] + (u.type === 'A' ? 40 : -10)} textAnchor="middle" fontSize={30} className="t-serif">
+            <text x={u.center[0]} y={u.center[1] + (u.type === 'A' ? 40 : -10)} textAnchor="middle" fontSize={26} className="t-display">
               {u.id}
             </text>
             <text x={u.center[0]} y={u.center[1] + (u.type === 'A' ? 62 : 12)} textAnchor="middle" fontSize={13} className="t-mono dim" letterSpacing="0.12em">
