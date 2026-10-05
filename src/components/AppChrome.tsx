@@ -1,9 +1,17 @@
 import { LAYERS, REVIEW } from '../blueprint/Schedules';
 import { BrandMark } from './Brand';
 
+/** Which drawing layer group a layer-panel row toggles in the dashboard demo. */
+function layerGroup(name: string): string | undefined {
+  if (name.startsWith('M-HVAC')) return 'mech';
+  if (name.startsWith('A-PKNG')) return 'pkng';
+  if (name === 'A-FURN' || name === 'P-FIXT') return 'furn';
+  return undefined;
+}
+
 /**
  * The product UI that appears around the drawing once we pull back out of the
- * blueprint and see it on a monitor. Purely presentational.
+ * blueprint and see it on a monitor. Static markup; `dashboardDemo` animates it.
  */
 export function AppChrome() {
   return (
@@ -24,7 +32,9 @@ export function AppChrome() {
         </div>
         <div className="chrome-actions">
           <span className="chrome-btn">Review · 3</span>
-          <span className="chrome-btn primary">Download DXF</span>
+          <span className="chrome-btn primary" data-demo="download">
+            Download DXF
+          </span>
         </div>
       </header>
 
@@ -32,9 +42,10 @@ export function AppChrome() {
         <div className="chrome-h">Layers</div>
         <ul>
           {LAYERS.map(([name, desc, , color]) => (
-            <li key={name}>
+            <li key={name} data-group={layerGroup(name)}>
               <span className="sw" style={{ background: color }} />
               <span className="ln-name">{name}</span>
+              <span className="eye" />
               <span className="ln-desc">{desc}</span>
             </li>
           ))}
@@ -43,11 +54,12 @@ export function AppChrome() {
 
       <aside className="chrome-right">
         <div className="chrome-h">Review</div>
-        {REVIEW.map((r) => (
-          <div key={r.n} className="chrome-card">
+        {REVIEW.map((r, i) => (
+          <div key={r.n} className="chrome-card" data-demo={i === 0 ? 'review' : undefined}>
             <div className="chrome-card-title">
               <span className="tri">{r.n}</span>
               {r.what}
+              <span className="ok">✓</span>
             </div>
             <div className="chrome-card-sub">{r.where}</div>
             <div className="chrome-thumbs">
@@ -64,6 +76,11 @@ export function AppChrome() {
         </ul>
       </aside>
       <footer className="chrome-bottom" />
+
+      <div className="chrome-toast">↓ L3.dxf · TAKEOFF_L3.xlsx</div>
+      <svg className="chrome-cursor" width="30" height="30" viewBox="0 0 30 30">
+        <path d="M4 3L4 24L10 18L14 27L18 25L14 16L22 16Z" />
+      </svg>
     </div>
   );
 }

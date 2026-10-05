@@ -1,7 +1,17 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { SectionDef } from '../content';
-import { archScale, deviceTarget, scaleBar, stationState, viewBox, type CamState, type Station } from './camera';
+import {
+  archScale,
+  deviceTarget,
+  MOBILE_BP,
+  scaleBar,
+  stationState,
+  viewBox,
+  type CamState,
+  type Station,
+} from './camera';
+import { createDashboardDemo } from './dashboardDemo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -203,6 +213,12 @@ const BUILDERS: Record<string, Builder> = {
       },
       0,
     );
+    tl.fromTo(
+      $('.screen'),
+      { borderRadius: 0 },
+      { borderRadius: () => (vw() < MOBILE_BP ? 40 : 10), duration: 0.6, ease: 'power2.inOut', immediateRender: false },
+      0,
+    );
     tl.to($('.chrome, .status-extra'), { opacity: 1, duration: 0.3 }, 0.3);
     tl.to($('.rail'), { opacity: 0, duration: 0.15 }, 0);
   },
@@ -216,6 +232,7 @@ export function buildChoreography(sections: SectionDef[], refs: Refs): () => voi
   const doc = (q: string) => gsap.utils.toArray<Element>(q);
   const segments: CamSegment[] = [];
   const cover = sections[0].stations[0];
+  let stopDemo = () => {};
 
   const ctx = gsap.context(() => {
     gsap.set(doc('.asm-unit'), { opacity: 0, x: (_i: number, el: HTMLElement) => (Number(el.dataset.col) - 1) * 40 });
@@ -242,6 +259,18 @@ export function buildChoreography(sections: SectionDef[], refs: Refs): () => voi
       const st = tl.scrollTrigger!;
       build(tl, doc, (a, b, pos, dur) => segments.push({ st, pos, dur, a, b }), def);
       tl.to({}, { duration: 0 }, 1);
+    });
+
+    // Once the monitor has settled, the dashboard runs its demo loop (desktop only: no side panels on phones).
+    const demo = createDashboardDemo(refs.svg);
+    stopDemo = demo.stop;
+    const dash = refs.sections[sections.findIndex((s) => s.id === 'dashboard')];
+    ScrollTrigger.create({
+      trigger: dash,
+      start: () => `top+=${(dash.offsetHeight - vh()) * 0.65} top`,
+      endTrigger: refs.sections.at(-1),
+      end: 'bottom bottom',
+      onToggle: (self) => (self.isActive && vw() >= MOBILE_BP ? demo.play() : demo.stop()),
     });
 
     // Intro: the sheet "prints" in.
@@ -284,6 +313,7 @@ export function buildChoreography(sections: SectionDef[], refs: Refs): () => voi
 
   return () => {
     gsap.ticker.remove(tick);
+    stopDemo();
     ctx.revert();
   };
 }

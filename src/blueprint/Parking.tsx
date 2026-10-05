@@ -61,6 +61,7 @@ export function ParkingLevel() {
           RAMP UP · 5%
         </text>
       </g>
+      <g className="layer-pkng">
       <g className="pk-stalls">
         {stalls.map((s) => (
           <path key={s.n} d={stallLines(s)} pathLength={1} className="dr stall" />
@@ -94,6 +95,7 @@ export function ParkingLevel() {
             {s.type}
           </text>
         ))}
+      </g>
       </g>
       <g className="pk-flow fd">
         {[400, 1350].map((y) => (

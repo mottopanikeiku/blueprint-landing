@@ -63,7 +63,7 @@ export const SECTIONS: SectionDef[] = [
     ],
     numbered: true,
     footer: 'Skilled, slow and repetitive. Exactly the kind of work AI can now do.',
-    vh: 280,
+    vh: 230,
     stations: [
       { rect: [180, 200, 1160, 1020], mode: 'side' },
       { rect: [2620, 260, 2560, 1160], mode: 'side' },
@@ -87,7 +87,7 @@ export const SECTIONS: SectionDef[] = [
       { text: 'Room names, furniture and fixtures' },
       { text: 'A standard layered DXF that opens directly in AutoCAD' },
     ],
-    vh: 260,
+    vh: 210,
     stations: [
       { rect: [200, 260, 2200, 1040], mode: 'side' },
       { rect: [1350, 300, 1080, 1000], mode: 'side' },
@@ -109,7 +109,7 @@ export const SECTIONS: SectionDef[] = [
       { text: 'Doors and windows, set into their walls' },
       { text: "Every wall placed on the PDF's own lines: exact, not traced by eye" },
     ],
-    vh: 300,
+    vh: 240,
     stations: [
       { rect: [2640, 300, 1380, 1120], mode: 'side' },
       { rect: [2620, 280, 2560, 1300], mode: 'side' },
@@ -131,7 +131,7 @@ export const SECTIONS: SectionDef[] = [
       { text: 'Equipment carries its tag, type and airflow' },
       { text: 'Every duct run and every piece of equipment, out as a take-off spreadsheet' },
     ],
-    vh: 260,
+    vh: 200,
     stations: [
       { rect: [2690, 880, 1240, 720], mode: 'side' },
       { rect: [2640, 300, 2540, 1300], mode: 'side' },
@@ -148,7 +148,7 @@ export const SECTIONS: SectionDef[] = [
       </>
     ),
     body: 'Parking levels come out with walls, columns and every parking stall, each with its number and size: small, medium, EV or accessible.',
-    vh: 220,
+    vh: 170,
     stations: [{ rect: [120, 1560, 2460, 1940], mode: 'side' }],
   },
   {
@@ -176,7 +176,7 @@ export const SECTIONS: SectionDef[] = [
     ],
     numbered: true,
     footer: 'AI does the reading and judgement. Deterministic code does the precise geometry. That is what makes the output real CAD, not a picture of a plan.',
-    vh: 440,
+    vh: 360,
     stations: [{ rect: [2640, 1560, 2520, 760], mode: 'side' }, frame(0), frame(1), frame(2), frame(3), frame(4)],
   },
   {
@@ -195,7 +195,7 @@ export const SECTIONS: SectionDef[] = [
       { lead: 'Take-offs.', text: 'Every duct run and every piece of equipment, as a spreadsheet.' },
       { lead: 'Review pictures.', text: 'Before/after images and a short list of exceptions, so a person reviews instead of redrawing.' },
     ],
-    vh: 300,
+    vh: 240,
     stations: [
       { rect: [2660, 2370, 860, 840], mode: 'side' },
       { rect: [3530, 2370, 860, 760], mode: 'side' },
@@ -219,7 +219,7 @@ export const SECTIONS: SectionDef[] = [
       { lead: 'Developers and owners.', text: 'Digitising PDF-only buildings.' },
       { lead: 'CAD drafting services.', text: 'The same work at a fraction of the hours.' },
     ],
-    vh: 190,
+    vh: 160,
     stations: [{ rect: [5270, 1150, 620, 680], mode: 'side' }],
   },
   {
@@ -241,7 +241,7 @@ export const SECTIONS: SectionDef[] = [
       },
       { lead: 'Next.', text: 'Electrical, plumbing and more building types.' },
     ],
-    vh: 260,
+    vh: 210,
     stations: [
       { rect: [200, 3450, 1320, 480], mode: 'side' },
       { rect: [5270, 1780, 620, 1000], mode: 'side' },
@@ -257,8 +257,8 @@ export const SECTIONS: SectionDef[] = [
         Upload a file. <em>Download the CAD.</em>
       </>
     ),
-    body: 'Everything on this sheet comes out of one run. Next is a web dashboard where you drop in a sketch or a PDF set and get back layered CAD, take-offs and a short review list. It is in development now, shaped by early-access firms.',
-    vh: 240,
+    body: 'Next is a web dashboard: drop in a sketch or a PDF set, toggle layers, clear the short review list, and download the DXF and take-offs. It is in development now, shaped by early-access firms.',
+    vh: 220,
     stations: [{ rect: [0, 0, 6000, 4000], mode: 'app' }],
   },
   {

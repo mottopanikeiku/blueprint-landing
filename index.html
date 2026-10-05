@@ -10,6 +10,14 @@
       content="[Product] turns hand sketches and PDF drawing sets into clean, layered CAD. The drafting that takes days, done in minutes."
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>
+      try {
+        if (localStorage.getItem('theme') === 'blue') {
+          document.documentElement.dataset.theme = 'blue';
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0f3768');
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

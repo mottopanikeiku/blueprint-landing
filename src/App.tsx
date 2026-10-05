@@ -6,6 +6,7 @@ import { Blueprint } from './blueprint/Blueprint';
 import { AccessForm } from './components/AccessForm';
 import { AppChrome } from './components/AppChrome';
 import { Wordmark } from './components/Brand';
+import { ThemeToggle } from './components/ThemeToggle';
 import { SECTIONS, type SectionDef } from './content';
 import { buildChoreography } from './stage/choreography';
 
@@ -132,9 +133,13 @@ export function App() {
         <button className="wordmark" onClick={() => jump('top')}>
           <Wordmark />
         </button>
-        <button className="btn small" onClick={() => jump('access')}>
-          Request early access
-        </button>
+        <div className="nav-right">
+          <ThemeToggle />
+          <button className="btn small" onClick={() => jump('access')}>
+            <span className="cta-full">Request early access</span>
+            <span className="cta-short">Early access</span>
+          </button>
+        </div>
       </header>
 
       <nav className="rail" aria-label="Sheet index">
