@@ -56,6 +56,21 @@ cp .env.example .env.local
 
 If the variable is not set, the form says it is not connected instead of pretending the request went through.
 
+On GitHub Pages, set it as a repository variable instead: Settings → Secrets and variables → Actions → Variables →
+`VITE_EARLY_ACCESS_ENDPOINT`. Then push, or re-run the "Deploy to GitHub Pages" workflow.
+
+## Deploy
+
+Every push to `main` builds the site and deploys it to GitHub Pages (`.github/workflows/pages.yml`). The live site is
+https://mottopanikeiku.github.io/blueprint-landing/. The build uses relative asset paths, so the same `dist/` also
+works at the root of a custom domain or on any static host.
+
+## Themes
+
+There are two sheet colours, black (the default) and the classic blueprint blue. Visitors switch between them with
+the toggle in the nav, and their choice is saved in `localStorage`. Every colour is a CSS variable in `src/styles.css`:
+`:root` holds the black theme and `[data-theme='blue']` the overrides for blue.
+
 ## Where things live
 
 ```
