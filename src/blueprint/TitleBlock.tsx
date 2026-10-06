@@ -14,15 +14,15 @@ export const AUDIENCE: [string, string][] = [
   ['MEP + HVAC ENGINEERS', 'Mechanical layers and take-offs from PDF sets'],
   ['CONTRACTORS + ESTIMATORS', 'Quantities straight from the drawings'],
   ['DEVELOPERS + OWNERS', 'Digitising PDF-only buildings'],
-  ['CAD DRAFTING SERVICES', 'The same work at a fraction of the hours'],
+  ['CAD DRAFTING SERVICES', 'A proposed workflow, not measured time savings'],
 ];
 
 export const REVISIONS: { rev: string; title: string; detail: string; status: string; tone: 'done' | 'wip' | 'next' }[] = [
-  { rev: 'A', title: 'SKETCH → CAD', detail: 'END TO END ON REAL CLIENT SKETCHES', status: 'WORKING', tone: 'done' },
-  { rev: 'B', title: 'PDF → CAD · ONE FULL FLOOR', detail: 'WALLS, DOORS, WINDOWS, MECHANICAL', status: 'BUILT', tone: 'done' },
-  { rev: 'C', title: 'PDF → CAD · 3 PARKING LEVELS', detail: 'EVERY STALL NUMBERED AND TYPED', status: 'BUILT', tone: 'done' },
-  { rev: 'D', title: 'EVERY FLOOR OF THE BUILDING', detail: 'EXTENDING FROM ONE FLOOR TO ALL', status: 'IN PROGRESS', tone: 'wip' },
-  { rev: 'E', title: 'ELECTRICAL, PLUMBING, MORE TYPES', detail: 'PLUS A WEB DASHBOARD', status: 'NEXT', tone: 'next' },
+  { rev: 'A', title: 'HOUSE SKETCH + CLEAN DRAWING', detail: 'SHARED AUTHORED PLAN GEOMETRY', status: 'DRAWN', tone: 'done' },
+  { rev: 'B', title: 'SYNTHETIC RESIDENTIAL FLOOR', detail: 'UNIT TEMPLATES, WALLS, MECHANICAL', status: 'DRAWN', tone: 'done' },
+  { rev: 'C', title: 'SYNTHETIC PARKING LAYOUT', detail: 'EXAMPLE STALL NUMBERS AND TYPES', status: 'DRAWN', tone: 'done' },
+  { rev: 'D', title: 'SCROLL + DASHBOARD CONCEPT', detail: 'SCRIPTED CURSOR AND REVIEW CARDS', status: 'DRAWN', tone: 'done' },
+  { rev: 'E', title: 'AI CONVERSION + CAD EXPORT', detail: 'NO BACKEND OR WRITER IN THIS REPO', status: 'ABSENT', tone: 'next' },
 ];
 
 function Head({ y, text }: { y: number; text: string }) {
@@ -53,9 +53,9 @@ export function TitleBlock() {
         [PRODUCT]
       </text>
       <text x={26} y={214} fontSize={38} className="t-display italic">
-        Drafting, automated.
+        Drafting, illustrated.
       </text>
-      {['AI THAT TURNS SKETCHES AND DRAWING', 'SETS INTO CLEAN, LAYERED CAD. THE', 'DRAFTING THAT TAKES DAYS, IN MINUTES.'].map(
+      {['A LANDING-PAGE CONCEPT WITH', 'AUTHORED SVG DRAWINGS. NO AI', 'CONVERSION OR CAD EXPORT.'].map(
         (l, i) => (
           <text key={l} x={26} y={300 + i * 30} fontSize={17} className="t-mono" letterSpacing="0.06em">
             {l}
@@ -63,12 +63,12 @@ export function TitleBlock() {
         ),
       )}
 
-      <Head y={top(R.project)} text="PROJECT DATA · TESTED ON" />
+      <Head y={top(R.project)} text="EXAMPLE DATA · SYNTHETIC" />
       {[
-        ['SKETCHES', 'FROM WORKING ARCHITECTS'],
-        ['PERMIT SET', '20 SHEETS · MECHANICAL'],
-        ['BUILDING', '186 UNITS · RESIDENTIAL'],
-        ['LEVELS', '7 RESIDENTIAL + 3 PARKING'],
+        ['SKETCH', 'GENERATED PENCIL STROKES'],
+        ['UNDERLAY', 'SVG, NOT AN UPLOADED PDF'],
+        ['FLOOR', 'AUTHORED UNIT TEMPLATES'],
+        ['PARKING', 'AUTHORED STALL LAYOUT'],
       ].map(([k, v], i) => (
         <g key={k}>
           <text x={24} y={top(R.project) + 104 + i * 88} fontSize={14} className="t-mono dim" letterSpacing="0.14em">
@@ -147,7 +147,7 @@ export function TitleBlock() {
         A-000
       </text>
       <text x={24} y={top(R.sheet) + 300} fontSize={17} className="t-mono" letterSpacing="0.12em">
-        DRAFTING, AUTOMATED.
+        DRAFTING, ILLUSTRATED.
       </text>
       <text x={24} y={top(R.sheet) + 340} fontSize={14} className="t-mono dim" letterSpacing="0.12em">
         SCALE AS NOTED · REV E · 2026

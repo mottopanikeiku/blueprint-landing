@@ -112,7 +112,7 @@ export function SketchDetail() {
         </g>
       </g>
       <text x={P.x} y={P.y + P.h + 70} className="t-mono dim" fontSize={18} letterSpacing="0.14em">
-        SOURCE · PHONE PHOTO OF A PAPER SKETCH · IMG_4127.JPG
+        AUTHORED SKETCH · GENERATED PENCIL STROKES · NOT A PHOTO
       </text>
 
       {/* the hand-off arrow */}
@@ -120,7 +120,7 @@ export function SketchDetail() {
         <path d={`M${P.x + P.w + 40} ${C.y + 300}H${C.x - 40}`} className="ln" />
         <path d={`M${C.x - 58} ${C.y + 288}L${C.x - 38} ${C.y + 300}L${C.x - 58} ${C.y + 312}`} className="ln" />
         <text x={(P.x + P.w + C.x) / 2} y={C.y + 282} textAnchor="middle" fontSize={16} className="t-mono" letterSpacing="0.14em">
-          MINUTES
+          SAME PLAN
         </text>
       </g>
 
@@ -150,7 +150,7 @@ export function SketchDetail() {
           ))}
         </g>
       </g>
-      <DetailTitle x={C.x} y={C.y + HOUSE.h + 210} n="1" sheet="A-101" title="Sketch → CAD" scale={'OUTPUT · UNIT_SKETCH_01.DXF · 7 LAYERS'} width={HOUSE.w} />
+      <DetailTitle x={C.x} y={C.y + HOUSE.h + 210} n="1" sheet="A-101" title="Sketch + clean drawing" scale={'AUTHORED SVG · NO DXF EXPORT'} width={HOUSE.w} />
     </g>
   );
 }

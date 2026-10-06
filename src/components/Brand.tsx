@@ -1,6 +1,6 @@
 /**
  * Brand mark: a CAD endpoint-snap marker, the square cursor that locks onto
- * a line. It stands for the product's promise: snapped to the source, exact.
+ * a line. Here it is a visual motif, not a source-alignment guarantee.
  */
 export function BrandMark({ size = 20 }: { size?: number }) {
   return (
@@ -19,7 +19,7 @@ export function Wordmark() {
         <BrandMark />
         [Product]
       </span>
-      <span className="wordmark-tag">Drafting, automated.</span>
+      <span className="wordmark-tag">Drafting, illustrated.</span>
     </>
   );
 }

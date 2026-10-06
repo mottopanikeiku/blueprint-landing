@@ -51,6 +51,8 @@
 }
 
 html {
+  /* The fixed monitor bezel extends beyond the viewport by design. */
+  overflow-x: clip;
   scrollbar-width: none;
   -webkit-text-size-adjust: 100%;
 }
@@ -67,6 +69,7 @@ html.lenis body {
 
 body {
   margin: 0;
+  overflow-x: clip;
   color: var(--ink);
   font-family: var(--sans);
   background: var(--page-bg) fixed;
@@ -1411,8 +1414,17 @@ ol.points li::before {
 .chips legend {
   margin-bottom: 10px;
 }
+.chip {
+  position: relative;
+}
 .chip input {
   position: absolute;
+  width: 1px;
+  height: 1px;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
   opacity: 0;
   pointer-events: none;
 }

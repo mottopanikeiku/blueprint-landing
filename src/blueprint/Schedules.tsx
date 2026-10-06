@@ -131,7 +131,7 @@ export function Schedules() {
       <Table
         x={x}
         y={y}
-        title="LAYERS"
+        title="EXAMPLE LAYERS"
         cols={['LAYER', 'CONTENTS', 'LW']}
         widths={[250, 430, 120]}
         rows={LAYERS.map(([n, d, lw, color]) => [
@@ -143,23 +143,23 @@ export function Schedules() {
           lw,
         ])}
         rowClass="tb-layer"
-        footer="STANDARD DXF · OPENS IN AUTOCAD AND OTHER CAD TOOLS"
+        footer="SVG DISPLAY GROUPS · NO DXF GENERATED"
       />
       <Table
         x={x + 860}
         y={y}
-        title="TAKE-OFF · L3 (EXCERPT)"
+        title="SYNTHETIC TAKE-OFF"
         cols={['TAG', 'ITEM', 'SIZE', 'LEN/QTY', 'CFM']}
         widths={[130, 230, 110, 140, 90]}
         rows={rows}
         rowClass="tb-take"
-        footer="EXPORTS AS A SPREADSHEET · TAKEOFF_L3.XLSX"
+        footer="LENGTHS FROM AUTHORED PATHS · OTHER VALUES ILLUSTRATIVE"
       />
       <g transform={`translate(${x + 1620} ${y})`}>
         <rect width={780} height={616} className="ln heavy" />
         <path d="M0 56H780" className="ln" />
         <text x={18} y={38} fontSize={22} className="t-mono" letterSpacing="0.16em">
-          REVIEW · 3 EXCEPTIONS
+          EXAMPLE REVIEW ITEMS
         </text>
         {REVIEW.map((r, i) => (
           <g key={r.n} className="tb-review fd" transform={`translate(0 ${80 + i * 178})`}>
@@ -180,10 +180,10 @@ export function Schedules() {
           </g>
         ))}
         <text x={0} y={650} fontSize={14} className="t-mono dim" letterSpacing="0.14em">
-          REVIEW EXCEPTIONS, NOT EVERY WALL
+          SCRIPTED EXCEPTIONS · NOT DETECTED FROM A FILE
         </text>
       </g>
-      <DetailTitle x={x} y={y + 780} n="4" sheet="G-601" title="What you get" scale="LAYERS · SMART OBJECTS · TAKE-OFFS · REVIEW" width={2400} />
+      <DetailTitle x={x} y={y + 780} n="4" sheet="G-601" title="Output concept" scale="SYNTHETIC LAYERS · TAKE-OFFS · REVIEW" width={2400} />
     </g>
   );
 }
@@ -218,10 +218,10 @@ export function Legend() {
 }
 
 export const NOTES = [
-  'IMAGE AI CAN FINALLY READ AND REDRAW TECHNICAL DRAWINGS. ON ITS OWN, IT IS NOT PRECISE ENOUGH FOR CAD.',
-  'WE PAIR IT WITH DETERMINISTIC GEOMETRY CODE THAT IS: STRAIGHT WALLS, SQUARE CORNERS, CLOSED ROOMS, SNAPPED TO SOURCE LINES.',
-  'BUILT AND TESTED ON REAL PROJECTS: HAND SKETCHES FROM WORKING ARCHITECTS, AND A FULL 20-SHEET MECHANICAL PERMIT SET FOR A 186-UNIT RESIDENTIAL BUILDING (7 RESIDENTIAL LEVELS, 3 PARKING LEVELS).',
-  'OUTPUT IS STANDARD DXF WITH PROFESSIONAL LAYER NAMING. THERE IS NO NEW SOFTWARE TO LEARN.',
+  'THIS LANDING PAGE ILLUSTRATES A PROPOSED SKETCH AND PDF TO CAD WORKFLOW. NO AI MODEL RUNS HERE.',
+  'ALL DRAWINGS COME FROM AUTHORED PLAN GEOMETRY: THE SKETCH, UNDERLAY AND CLEAN DRAWING SHARE THE SAME SOURCE.',
+  'EQUIPMENT SPECIFICATIONS AND REVIEW EXCEPTIONS ARE SYNTHETIC EXAMPLES, NOT CLIENT-PROJECT RESULTS.',
+  'THE DASHBOARD CURSOR AND EXPORT NOTIFICATION ARE SCRIPTED. NO CAD OR SPREADSHEET FILE IS GENERATED.',
 ];
 
 function wrap(text: string, max: number): string[] {
@@ -243,7 +243,7 @@ export function GeneralNotes() {
   return (
     <g id="d-notes" transform={`translate(${x} ${y})`}>
       <text fontSize={22} className="t-mono" letterSpacing="0.16em">
-        GENERAL NOTES · WHY NOW
+        GENERAL NOTES · CONCEPT
       </text>
       <path d="M0 18H2280" className="ln" />
       {NOTES.map((n, i) => {
