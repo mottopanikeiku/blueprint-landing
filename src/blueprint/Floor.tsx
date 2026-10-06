@@ -35,10 +35,10 @@ export function FloorPlate() {
         <PlanCad plan={full} anim={false} labels={false} />
       </g>
       <text x={0} y={-36} fontSize={18} className="t-mono dim" letterSpacing="0.14em">
-        SOURCE · PERMIT SET · SHEET M-301 · LEVEL 3 (PDF, VECTOR)
+        SYNTHETIC UNDERLAY · AUTHORED SVG · NOT AN UPLOADED PDF
       </text>
 
-      {/* type recognition: one unit recognised, then placed on every copy */}
+      {/* Illustrate unit-template recognition by highlighting authored instances. */}
       <g className="instances">
         {units.map((u) => {
           const firstOfType = u.id === '301' || u.id === '307';
@@ -174,7 +174,7 @@ export function FloorPlate() {
         </g>
       </g>
 
-      <DetailTitle x={1400} y={FLOOR.h + 150} n="2" sheet="A-201" title="Level 3 · PDF → CAD" scale={'ARCHITECTURE + MECHANICAL · L3.DXF'} width={1000} />
+      <DetailTitle x={1400} y={FLOOR.h + 150} n="2" sheet="A-201" title="Synthetic floor plate" scale={'ARCHITECTURE + MECHANICAL · SVG EXAMPLE'} width={1000} />
     </g>
   );
 }

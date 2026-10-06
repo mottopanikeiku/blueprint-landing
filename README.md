@@ -1,92 +1,44 @@
-# [Product]: landing page
+# Blueprint landing
 
-The landing page for **[Product]**, which turns hand sketches and PDF drawing sets into layered CAD.
+A scroll-driven React landing-page concept that draws an architectural sheet in SVG and pulls back to an illustrated dashboard.
 
-The whole page is one architectural blueprint sheet (A-000). Scrolling moves a camera across the sheet, and each stop
-tells one part of the story. CAD output draws itself in as you go:
+**Question:** can one continuous blueprint explain a proposed sketch/PDF-to-CAD workflow without switching between unrelated screenshots?
 
-| Sheet | Section | On the drawing |
-|---|---|---|
-| A-000 | Cover | Full sheet, hero copy |
-| G-001 | The problem | Redline clouds over the sketch, the PDF-only floor plate and the repeated units |
-| A-101 | Sketch → CAD | A taped paper sketch, then the clean layered CAD drawing beside it |
-| A-201 | PDF → CAD | PDF underlay, unit types recognised and copied, walls merged and drawn |
-| M-201 | Mechanical | Ductwork, fan coils, grilles and dampers, with smart-object callouts |
-| P-101 | Parking | Columns, ramp, and every stall numbered and typed |
-| G-501 | How it works | Five detail frames: Read, Understand, Measure, Assemble, Check |
-| G-601 | What you get | Layer table, take-off schedule, review exceptions |
-| G-701 | Who it's for | The "Issued for" box in the title block |
-| G-801 | Why now · Status | General notes, then the revisions table |
-| A-900 | Dashboard | The camera pulls back and the sheet turns out to be on a monitor running the product |
-| A-000 | Early access | Request form beside the monitor |
+[Plan definitions](src/blueprint/plans.ts) supply the house, repeated apartment units, ductwork and parking geometry. [Geometry helpers](src/blueprint/geometry.ts) split walls around openings and transform those plans into sheet coordinates. [Scroll choreography](src/stage/choreography.ts) moves the camera and reveals the drawings before showing the dashboard concept.
 
-All drawings are generated in code from small plan definitions (`src/blueprint/plans.ts`). There are no image assets.
-The pencil sketch, the CAD and the PDF underlay all come from the same plan geometry.
+**Result:** an implemented frontend, not a CAD-conversion system. The sketch, PDF-style underlay and clean drawing share authored geometry; none is inferred from an uploaded file. The dashboard cursor, review items and download notification are scripted illustrations, not completed processing or exports. There is no measured accuracy or time-saving result in this repository.
 
-## Stack
+[Live page](https://mottopanikeiku.github.io/blueprint-landing/).
 
-- Vite, React 19, TypeScript
-- GSAP ScrollTrigger for the scroll-scrubbed reveals. Lenis for smooth scrolling (turned off when the user prefers
-  reduced motion).
-- Fonts are self-hosted with Fontsource. Archivo, a variable font, is the brand face: its expanded width (125%) is used
-  for display type and its normal width for body text. IBM Plex Mono is used for drawing text, and Caveat for the
-  handwriting on the sketch.
-- Brand mark (`src/components/Brand.tsx`): a CAD endpoint-snap marker, meaning snapped to the source and exact. The
-  red-orange accent (`--accent`) is redline red.
+## Run locally
 
-## Run it
+Use Node.js 22 and npm, matching the [Pages workflow](.github/workflows/pages.yml). A CPU laptop and a browser are enough; no GPU, model, paid API or paid compute is needed ($0 compute). On the shared workstation, run dependency installation and builds through `pp-run heavy`.
 
 ```sh
-npm install
-npm run dev       # http://localhost:5173
-npm run build     # type-check, then build to dist/
-npm run preview   # serve dist/
+npm ci
+npm run build
+npm run preview
 ```
 
-## Early access form
+Open the local URL printed by Vite. `npm run dev` is the alternative for editing with hot reload. The build runs TypeScript checking and writes the static site to `dist/`.
 
-The form sends JSON (`name`, `email`, `firm`, `role`, `drawings[]`) by `POST` to the URL in
-`VITE_EARLY_ACCESS_ENDPOINT`. Any endpoint that accepts JSON will work, for example a Formspree form, a serverless
-function or a CRM webhook.
+## Editing and deployment
 
-```sh
-cp .env.example .env.local
-# then set VITE_EARLY_ACCESS_ENDPOINT=https://formspree.io/f/xxxxxxx
-```
+- [Section copy](src/content.tsx) also defines the camera stations in sheet coordinates. [Camera math](src/stage/camera.ts) fits them into the viewport; [styles](src/styles.css) hold the black and blue themes.
+- The brand remains `[Product]`, an intentional placeholder. Fonts are bundled locally through Fontsource.
+- The optional [contact form](src/components/AccessForm.tsx) posts name, email, firm, role and drawing interests to `VITE_EARLY_ACCESS_ENDPOINT`. It reports an error when no endpoint is configured. `.env.example` documents the variable; local environment files are ignored. Any configured endpoint is public in the browser bundle, so never put credentials there. No submitted contact data is stored in this repository.
+- The existing workflow builds pull requests and deploys pushes to `main` to GitHub Pages. Relative asset paths support the repository subpath. No settings changes are needed for this cleanup.
 
-If the variable is not set, the form says it is not connected instead of pretending the request went through.
+## Limitations
 
-On GitHub Pages, set it as a repository variable instead: Settings → Secrets and variables → Actions → Variables →
-`VITE_EARLY_ACCESS_ENDPOINT`. Then push, or re-run the "Deploy to GitHub Pages" workflow.
+- No sketch/PDF ingestion, AI inference, DXF writer or spreadsheet export.
+- Plan geometry, equipment specifications and review exceptions are synthetic examples, not client-project evidence.
+- The illustrated dashboard is not interactive product functionality.
+- The form needs an external endpoint before it can send requests.
+- There is no automated browser test suite or usability study; the build checks types, not visual quality.
 
-## Deploy
+## Prior work and dependencies
 
-Every push to `main` builds the site and deploys it to GitHub Pages (`.github/workflows/pages.yml`). The live site is
-https://mottopanikeiku.github.io/blueprint-landing/. The build uses relative asset paths, so the same `dist/` also
-works at the root of a custom domain or on any static host.
+This frontend uses [React](https://react.dev/), [Vite](https://vite.dev/), [GSAP ScrollTrigger](https://gsap.com/docs/v3/Plugins/ScrollTrigger/), [Lenis](https://github.com/darkroomengineering/lenis) and [Fontsource](https://fontsource.org/). [Locked package versions](package-lock.json) record those dependencies. Architectural sheet numbering, layer tables and redline clouds provide the visual vocabulary; no paper reproduction or external CAD dataset is included.
 
-## Themes
-
-There are two sheet colours, black (the default) and the classic blueprint blue. Visitors switch between them with
-the toggle in the nav, and their choice is saved in `localStorage`. Every colour is a CSS variable in `src/styles.css`:
-`:root` holds the black theme and `[data-theme='blue']` the overrides for blue.
-
-## Where things live
-
-```
-src/
-  content.tsx            section copy + camera stations (which part of the sheet each section frames)
-  stage/camera.ts        camera math: fitting a sheet rectangle into the free part of the screen, monitor pull-back
-  stage/choreography.ts  scroll timelines: camera path + per-section reveals
-  blueprint/             the sheet itself
-    plans.ts             plan data: house sketch, floor plate, units, ductwork, parking, sheet layout
-    geometry.ts          wall/opening resolution, transforms, pencil strokes, revision clouds
-    cad.tsx              CAD renderer (walls, doors, windows, fixtures, labels), detail titles
-    Sketch.tsx  Floor.tsx  Parking.tsx  Process.tsx  Schedules.tsx  TitleBlock.tsx  Blueprint.tsx
-  components/            dashboard chrome shown inside the monitor, early-access form
-```
-
-To change copy, edit `src/content.tsx`. To reframe a section, change its `stations` rectangles. These are in sheet
-units, and the sheet is 6000 × 4000.
-
-`[Product]` is a placeholder everywhere. Search for it when the name is decided.
+Written with AI coding assistance.

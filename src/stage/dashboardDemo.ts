@@ -16,7 +16,7 @@ function centerIn(el: HTMLElement, root: HTMLElement): { x: number; y: number } 
 /**
  * Once we have pulled back to the monitor, a cursor works the dashboard on a
  * loop: hides and shows the HVAC and parking layers, clears a review item,
- * downloads the DXF. Layer visibility is a class on the drawing, so it never
+ * shows an export illustration. No file is generated. Layer visibility is a class on the drawing, so it never
  * fights the scroll timelines that own the drawing's inline styles.
  */
 export function createDashboardDemo(svg: SVGSVGElement) {

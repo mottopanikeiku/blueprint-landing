@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Landing page for [Product]: sketches and PDF drawing sets in, layered CAD out. A scroll-driven walk across one blueprint sheet.",
+  "description": "A scroll-driven architectural blueprint landing-page concept with authored SVG geometry and an illustrated CAD dashboard.",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

@@ -110,7 +110,7 @@ export function ParkingLevel() {
         </text>
       </g>
 
-      <DetailTitle x={0} y={PARKING.h + 140} n="3" sheet="P-101" title="Parking level P1" scale={`${stalls.length} STALLS · NUMBERED, TYPED · P1.DXF`} width={PARKING.w} />
+      <DetailTitle x={0} y={PARKING.h + 140} n="3" sheet="P-101" title="Synthetic parking level" scale={`${stalls.length} STALLS · AUTHORED SVG · NO DXF EXPORT`} width={PARKING.w} />
     </g>
   );
 }

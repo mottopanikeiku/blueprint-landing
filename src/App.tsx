@@ -42,13 +42,13 @@ function Card({ def, index }: { def: SectionDef; index: number }) {
 function Hero({ onJump }: { onJump: (id: string) => void }) {
   return (
     <div className="hero">
-      <p className="hero-kicker">Sheet A-000 · Issued for early access</p>
+      <p className="hero-kicker">Sheet A-000 · Landing-page concept</p>
       <h1>
-        Drafting, <em>automated.</em>
+        Drafting, <em>illustrated.</em>
       </h1>
       <p className="hero-lede">
-        [Product] turns hand sketches and PDF drawing sets into clean, layered CAD. The drafting that takes a person
-        days, done in minutes.
+        A proposed sketch-to-CAD workflow, shown on one continuous blueprint. These drawings are authored examples,
+        not AI conversions; the dashboard and exports are illustrations.
       </p>
       <div className="hero-ctas">
         <button className="btn primary" onClick={() => onJump('access')}>
@@ -119,7 +119,7 @@ export function App() {
               <span ref={barRef} className="bar" />
               <span ref={barLabelRef} />
             </span>
-            <span className="status-extra">Snapped to source lines · 13 layers · DXF R2018</span>
+            <span className="status-extra">Authored SVG geometry · Illustrated layers · No CAD export</span>
           </div>
         </div>
         <div className="stand" aria-hidden="true">

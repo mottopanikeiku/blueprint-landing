@@ -44,25 +44,25 @@ export const SECTIONS: SectionDef[] = [
     kicker: 'The problem',
     title: (
       <>
-        Most of the hours go to <em>drafting</em>, not design.
+        The concept starts with <em>repeated drafting</em>.
       </>
     ),
     points: [
       {
         lead: 'Redrawing by hand.',
-        text: 'A plan sketched on paper or a tablet becomes hours of tracing into AutoCAD: walls, doors, windows, fixtures, layers, line weights.',
+        text: 'The house example shows a paper-style sketch beside a clean drawing. Both are rendered from the same authored geometry.',
       },
       {
         lead: 'Rebuilding drawings that already exist.',
-        text: 'When all you have is a PDF permit set or old record drawings, someone redraws every wall, door and duct, floor by floor.',
+        text: 'The PDF-style underlay illustrates a proposed redraw workflow. No permit set is uploaded or read by this page.',
       },
       {
         lead: 'Copy work across a building.',
-        text: 'Hundreds of units built from a few dozen types. Every copy, every shared wall and every corridor drawn and checked by hand.',
+        text: 'The floor example repeats authored unit templates and adds shared walls and a corridor.',
       },
     ],
     numbered: true,
-    footer: 'Skilled, slow and repetitive. Exactly the kind of work AI can now do.',
+    footer: 'A visual explanation of a proposed workflow, not a demonstration of AI conversion.',
     vh: 230,
     stations: [
       { rect: [180, 200, 1160, 1020], mode: 'side' },
@@ -77,15 +77,15 @@ export const SECTIONS: SectionDef[] = [
     kicker: '01 · Sketch → CAD',
     title: (
       <>
-        A photo of a sketch in. <em>A layered DXF</em> out.
+        A sketch beside <em>a clean drawing</em>.
       </>
     ),
-    body: 'The AI reads the sketch the way an architect would: what is a wall, a door, a window, a piece of furniture. Then deterministic geometry code makes it exact. Straight walls, square corners, closed rooms.',
+    body: 'The paper sketch and clean SVG share one house plan. Pencil strokes, walls, door swings and room labels are generated in code; no image model reads the sketch.',
     points: [
       { text: 'Walls as proper objects, exterior and interior on separate layers at consistent thicknesses' },
       { text: 'Doors with their swings, windows set into their walls' },
       { text: 'Room names, furniture and fixtures' },
-      { text: 'A standard layered DXF that opens directly in AutoCAD' },
+      { text: 'SVG geometry styled to resemble a layered CAD drawing; no DXF is generated' },
     ],
     vh: 210,
     stations: [
@@ -100,14 +100,14 @@ export const SECTIONS: SectionDef[] = [
     kicker: '02 · PDF → CAD · Architecture',
     title: (
       <>
-        A permit set in. <em>Every floor</em> out, layered.
+        A floor plate, <em>assembled</em> from templates.
       </>
     ),
-    body: 'The set is read sheet by sheet. Unit types are recognised once and placed on every copy, then shared walls between neighbours are merged into single walls.',
+    body: 'Authored unit templates are placed along a corridor. The faint underlay and clean drawing use the same geometry; the animation is not PDF recognition.',
     points: [
       { text: 'Exterior walls, walls between units, partitions, corridors, stairs and elevator cores' },
       { text: 'Doors and windows, set into their walls' },
-      { text: "Every wall placed on the PDF's own lines: exact, not traced by eye" },
+      { text: 'A PDF-style underlay drawn from the same authored plan, not source-file measurements' },
     ],
     vh: 240,
     stations: [
@@ -122,14 +122,14 @@ export const SECTIONS: SectionDef[] = [
     kicker: '02 · PDF → CAD · Mechanical',
     title: (
       <>
-        HVAC on its own layers, as <em>smart objects</em>.
+        HVAC illustrated on <em>separate layers</em>.
       </>
     ),
-    body: 'Ductwork, equipment, fans, grilles, wall caps and dampers, each on its own industry-standard layer. Duct sizes and equipment tags are read and attached as real text.',
+    body: 'The example adds authored duct runs, equipment, grilles and dampers. Sizes, airflow and tags are synthetic display values, not extracted specifications.',
     points: [
       { text: 'Ducts carry their size and length' },
       { text: 'Equipment carries its tag, type and airflow' },
-      { text: 'Every duct run and every piece of equipment, out as a take-off spreadsheet' },
+      { text: 'A sample take-off table, with lengths calculated from the authored duct paths; no spreadsheet is exported' },
     ],
     vh: 200,
     stations: [
@@ -147,53 +147,53 @@ export const SECTIONS: SectionDef[] = [
         Every stall, <em>numbered</em> and typed.
       </>
     ),
-    body: 'Parking levels come out with walls, columns and every parking stall, each with its number and size: small, medium, EV or accessible.',
+    body: 'A synthetic parking layout shows walls, columns and numbered stalls. Small, medium, EV and accessible labels illustrate the proposed output; they are not inferred from a drawing.',
     vh: 170,
     stations: [{ rect: [120, 1560, 2460, 1940], mode: 'side' }],
   },
   {
     id: 'how',
     sheet: 'G-501',
-    rail: 'How it works',
-    kicker: 'How it works',
+    rail: 'Proposed workflow',
+    kicker: 'Proposed workflow',
     title: (
       <>
-        AI reads. <em>Geometry</em> measures.
+        A proposed pipeline, <em>drawn</em> in stages.
       </>
     ),
     points: [
-      { lead: 'Read.', text: 'AI reads the drawing: what each sheet is, the scale, the legend, which units are which types.' },
+      { lead: 'Read.', text: 'A future converter would identify sheets, scale, legends and unit types. This page does not read files.' },
       {
         lead: 'Understand.',
-        text: 'An image model redraws each part as a clean, colour-coded structure drawing: walls, doors, windows and fixtures each in their own colour.',
+        text: 'Coloured SVG drawings illustrate structural categories. No image model runs here.',
       },
-      { lead: 'Measure.', text: "Geometry code turns that drawing into exact objects and snaps them to the source's own lines." },
+      { lead: 'Measure.', text: 'Local geometry helpers split authored walls around openings and place door swings.' },
       {
         lead: 'Assemble.',
-        text: 'Units, shared walls, common areas and mechanical systems are joined into one CAD file per floor.',
+        text: 'The example composes unit templates, common areas and mechanical layers into one SVG sheet.',
       },
-      { lead: 'Check.', text: 'Automatic checks flag anything uncertain, with pictures, for a quick human look.' },
+      { lead: 'Check.', text: 'Scripted review cards illustrate a human review step; no uncertainty detector is implemented.' },
     ],
     numbered: true,
-    footer: 'AI does the reading and judgement. Deterministic code does the precise geometry. That is what makes the output real CAD, not a picture of a plan.',
+    footer: 'Only the SVG geometry and frontend animation are implemented in this repository.',
     vh: 360,
     stations: [{ rect: [2640, 1560, 2520, 760], mode: 'side' }, frame(0), frame(1), frame(2), frame(3), frame(4)],
   },
   {
     id: 'output',
     sheet: 'G-601',
-    rail: 'What you get',
-    kicker: 'What you get',
+    rail: 'Output concept',
+    kicker: 'Output concept',
     title: (
       <>
-        Files your office <em>already</em> uses.
+        An illustration of <em>possible outputs</em>.
       </>
     ),
     points: [
-      { lead: 'Layers.', text: 'Standard DXF with professional layer naming. No new software to learn.' },
-      { lead: 'Smart objects.', text: 'Ducts with size and length. Equipment with tag, type and airflow.' },
-      { lead: 'Take-offs.', text: 'Every duct run and every piece of equipment, as a spreadsheet.' },
-      { lead: 'Review pictures.', text: 'Before/after images and a short list of exceptions, so a person reviews instead of redrawing.' },
+      { lead: 'Layers.', text: 'A sample layer table shows how a CAD export could be organised. This page renders SVG only.' },
+      { lead: 'Objects.', text: 'Authored ducts and equipment carry example sizes, tags and airflow values.' },
+      { lead: 'Take-offs.', text: 'Duct lengths come from the synthetic paths; equipment quantities are illustrative.' },
+      { lead: 'Review pictures.', text: 'Synthetic before/after thumbnails and scripted exceptions show a proposed review interface.' },
     ],
     vh: 240,
     stations: [
@@ -217,7 +217,7 @@ export const SECTIONS: SectionDef[] = [
       { lead: 'MEP and HVAC engineers.', text: 'Mechanical layers and take-offs from PDF sets.' },
       { lead: 'Contractors and estimators.', text: 'Quantities straight from the drawings.' },
       { lead: 'Developers and owners.', text: 'Digitising PDF-only buildings.' },
-      { lead: 'CAD drafting services.', text: 'The same work at a fraction of the hours.' },
+      { lead: 'CAD drafting services.', text: 'A proposed workflow for repetitive drafting; no time savings measured here.' },
     ],
     vh: 160,
     stations: [{ rect: [5270, 1150, 620, 680], mode: 'side' }],
@@ -225,21 +225,18 @@ export const SECTIONS: SectionDef[] = [
   {
     id: 'status',
     sheet: 'G-801',
-    rail: 'Why now · Status',
-    kicker: 'Why now · Status',
+    rail: 'Prototype status',
+    kicker: 'Prototype status',
     title: (
       <>
-        Built on <em>real</em> projects.
+        Built from <em>authored</em> examples.
       </>
     ),
-    body: 'Image AI can finally read and redraw technical drawings, but on its own it is not precise enough for CAD. We pair it with geometry code that is, and test it on real work: hand sketches from working architects, and a full 20-sheet mechanical permit set for a 186-unit residential building.',
+    body: 'This repository contains a working landing-page frontend with synthetic house, floor, mechanical and parking drawings. It does not include client sketches, a permit-set dataset, a conversion backend or measured conversion results.',
     points: [
-      { lead: 'Sketch → CAD.', text: 'Working end to end on real client sketches.' },
-      {
-        lead: 'PDF → CAD.',
-        text: 'One full floor built (walls, doors, windows, mechanical) plus all three parking levels. Extending to every floor of the building now.',
-      },
-      { lead: 'Next.', text: 'Electrical, plumbing and more building types.' },
+      { lead: 'Geometry.', text: 'The house sketch and clean drawing use the same plan; floor and parking scenes use authored layouts.' },
+      { lead: 'Presentation.', text: 'Scroll-driven camera moves, layer reveals, theme switching and a scripted dashboard are implemented.' },
+      { lead: 'Not included.', text: 'AI inference, drawing ingestion, DXF writing and spreadsheet export.' },
     ],
     vh: 210,
     stations: [
@@ -251,13 +248,13 @@ export const SECTIONS: SectionDef[] = [
     id: 'dashboard',
     sheet: 'A-900',
     rail: 'Dashboard',
-    kicker: 'Coming next · The dashboard',
+    kicker: 'Dashboard concept',
     title: (
       <>
-        Upload a file. <em>Download the CAD.</em>
+        A dashboard, <em>illustrated</em>.
       </>
     ),
-    body: 'Next is a web dashboard: drop in a sketch or a PDF set, toggle layers, clear the short review list, and download the DXF and take-offs. It is in development now, shaped by early-access firms.',
+    body: 'A scripted cursor toggles drawing layers, marks an example review item and shows an export notification. No file is uploaded, processed or downloaded. The controls are static presentation markup.',
     vh: 220,
     stations: [{ rect: [0, 0, 6000, 4000], mode: 'app' }],
   },
@@ -268,9 +265,10 @@ export const SECTIONS: SectionDef[] = [
     kicker: 'Request early access',
     title: (
       <>
-        Put your drawings <em>on the sheet</em>.
+        Ask about <em>the concept</em>.
       </>
     ),
+    body: 'This optional contact form sends your details only when an external endpoint is configured. It does not upload or convert drawings.',
     vh: 150,
     stations: [{ rect: [0, 0, 6000, 4000], mode: 'app' }],
   },

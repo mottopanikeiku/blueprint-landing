@@ -22,7 +22,7 @@ export function AppChrome() {
           [Product]
         </div>
         <div className="chrome-crumbs">
-          <span>Residential · 186 units</span>
+          <span>Synthetic residential example</span>
           <span className="sep">/</span>
           <span>Level 3</span>
           <span className="sep">/</span>
@@ -31,9 +31,9 @@ export function AppChrome() {
           <span className="file out">L3.dxf</span>
         </div>
         <div className="chrome-actions">
-          <span className="chrome-btn">Review · 3</span>
+          <span className="chrome-btn">Illustrated review</span>
           <span className="chrome-btn primary" data-demo="download">
-            Download DXF
+            Export concept
           </span>
         </div>
       </header>
@@ -68,7 +68,7 @@ export function AppChrome() {
             </div>
           </div>
         ))}
-        <div className="chrome-h">Exports</div>
+        <div className="chrome-h">Example filenames · not generated</div>
         <ul className="chrome-files">
           <li>L3.dxf</li>
           <li>TAKEOFF_L3.xlsx</li>
@@ -77,7 +77,7 @@ export function AppChrome() {
       </aside>
       <footer className="chrome-bottom" />
 
-      <div className="chrome-toast">↓ L3.dxf · TAKEOFF_L3.xlsx</div>
+      <div className="chrome-toast">Export illustration · no file downloaded</div>
       <svg className="chrome-cursor" width="30" height="30" viewBox="0 0 30 30">
         <path d="M4 3L4 24L10 18L14 27L18 25L14 16L22 16Z" />
       </svg>
