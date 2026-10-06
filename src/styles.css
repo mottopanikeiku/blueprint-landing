@@ -51,6 +51,8 @@
 }
 
 html {
+  /* The fixed monitor bezel extends beyond the viewport by design. */
+  overflow-x: clip;
   scrollbar-width: none;
   -webkit-text-size-adjust: 100%;
 }
