@@ -12,7 +12,7 @@ A scroll-driven React landing-page concept that draws an architectural sheet in 
 
 ## Run locally
 
-Use Node.js 22 and npm, matching the [Pages workflow](.github/workflows/pages.yml). A CPU laptop and a browser are enough; no GPU, model, paid API or paid compute is needed ($0 compute). On the shared workstation, run dependency installation and builds through `pp-run heavy`.
+Use Node.js 22 and npm, matching the [Pages workflow](.github/workflows/pages.yml). A CPU laptop and a browser are enough; no GPU, model, paid API or paid compute is needed.
 
 ```sh
 npm ci
@@ -27,7 +27,7 @@ Open the local URL printed by Vite. `npm run dev` is the alternative for editing
 - [Section copy](src/content.tsx) also defines the camera stations in sheet coordinates. [Camera math](src/stage/camera.ts) fits them into the viewport; [styles](src/styles.css) hold the black and blue themes.
 - The brand remains `[Product]`, an intentional placeholder. Fonts are bundled locally through Fontsource.
 - The optional [contact form](src/components/AccessForm.tsx) posts name, email, firm, role and drawing interests to `VITE_EARLY_ACCESS_ENDPOINT`. It reports an error when no endpoint is configured. `.env.example` documents the variable; local environment files are ignored. Any configured endpoint is public in the browser bundle, so never put credentials there. No submitted contact data is stored in this repository.
-- The existing workflow builds pull requests and deploys pushes to `main` to GitHub Pages. Relative asset paths support the repository subpath. No settings changes are needed for this cleanup.
+- The workflow builds pull requests and deploys pushes to `main` to [GitHub Pages](https://mottopanikeiku.github.io/blueprint-landing/). Relative asset paths support the repository subpath.
 
 ## Limitations
 
