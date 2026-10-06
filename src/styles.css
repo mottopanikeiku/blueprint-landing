@@ -1411,8 +1411,17 @@ ol.points li::before {
 .chips legend {
   margin-bottom: 10px;
 }
+.chip {
+  position: relative;
+}
 .chip input {
   position: absolute;
+  width: 1px;
+  height: 1px;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
   opacity: 0;
   pointer-events: none;
 }
