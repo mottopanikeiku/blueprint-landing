@@ -1054,7 +1054,8 @@ button {
 }
 .btn:focus-visible,
 .rail button:focus-visible,
-.wordmark:focus-visible {
+.wordmark:focus-visible,
+.card:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
@@ -1360,6 +1361,31 @@ ol.points li::before {
   display: grid;
   gap: 18px;
 }
+.form-body {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.form-body:disabled {
+  opacity: 0.5;
+}
+.form-body:disabled .chip span {
+  cursor: not-allowed;
+}
+/* The fieldset already dims the button; drop the "sending" dimming and progress cursor. */
+.form-body:disabled .btn.primary:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+}
+.form-note {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-2);
+}
 .field-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1508,8 +1534,14 @@ ol.points li::before {
   .wordmark-tag {
     display: none;
   }
+  /* Visually hidden, not display: none, so the swatch-only buttons keep an accessible name. */
   .theme-toggle .label {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
   .nav-right {
     gap: 6px;

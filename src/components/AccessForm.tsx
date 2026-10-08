@@ -12,6 +12,7 @@ export function AccessForm() {
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!ENDPOINT) return;
     const form = e.currentTarget;
     const data = new FormData(form);
     const payload = {
@@ -21,10 +22,6 @@ export function AccessForm() {
       role: data.get('role'),
       drawings: data.getAll('drawings'),
     };
-    if (!ENDPOINT) {
-      setState({ kind: 'error', message: 'This form is not connected yet: set VITE_EARLY_ACCESS_ENDPOINT.' });
-      return;
-    }
     setState({ kind: 'sending' });
     try {
       const res = await fetch(ENDPOINT, {
@@ -51,45 +48,51 @@ export function AccessForm() {
 
   return (
     <form className="access-form" onSubmit={submit}>
-      <div className="field-row">
-        <label className="field">
-          <span>Name</span>
-          <input name="name" required autoComplete="name" />
-        </label>
-        <label className="field">
-          <span>Email</span>
-          <input name="email" type="email" required autoComplete="email" />
-        </label>
-      </div>
-      <div className="field-row">
-        <label className="field">
-          <span>Firm</span>
-          <input name="firm" required autoComplete="organization" />
-        </label>
-        <label className="field">
-          <span>Role</span>
-          <select name="role" required defaultValue="">
-            <option value="" disabled>
-              Select
-            </option>
-            {ROLES.map((r) => (
-              <option key={r}>{r}</option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <fieldset className="field chips">
-        <legend>What drawings do you work with?</legend>
-        {DRAWINGS.map((d) => (
-          <label key={d} className="chip">
-            <input type="checkbox" name="drawings" value={d} />
-            <span>{d}</span>
+      {!ENDPOINT && (
+        <p className="form-note">Submissions are off: this build has no form endpoint configured.</p>
+      )}
+      {/* Disabled as a whole when unconnected, so nobody fills in details that cannot be sent. */}
+      <fieldset className="form-body" disabled={!ENDPOINT}>
+        <div className="field-row">
+          <label className="field">
+            <span>Name</span>
+            <input name="name" required autoComplete="name" />
           </label>
-        ))}
+          <label className="field">
+            <span>Email</span>
+            <input name="email" type="email" required autoComplete="email" />
+          </label>
+        </div>
+        <div className="field-row">
+          <label className="field">
+            <span>Firm</span>
+            <input name="firm" required autoComplete="organization" />
+          </label>
+          <label className="field">
+            <span>Role</span>
+            <select name="role" required defaultValue="">
+              <option value="" disabled>
+                Select
+              </option>
+              {ROLES.map((r) => (
+                <option key={r}>{r}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <fieldset className="field chips">
+          <legend>What drawings do you work with?</legend>
+          {DRAWINGS.map((d) => (
+            <label key={d} className="chip">
+              <input type="checkbox" name="drawings" value={d} />
+              <span>{d}</span>
+            </label>
+          ))}
+        </fieldset>
+        <button className="btn primary" type="submit" disabled={state.kind === 'sending'}>
+          {state.kind === 'sending' ? 'Sending…' : 'Request early access'}
+        </button>
       </fieldset>
-      <button className="btn primary" type="submit" disabled={state.kind === 'sending'}>
-        {state.kind === 'sending' ? 'Sending…' : 'Request early access'}
-      </button>
       {state.kind === 'error' && (
         <p className="form-error" role="alert">
           {state.message}

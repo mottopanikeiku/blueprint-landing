@@ -13,7 +13,8 @@ import { buildChoreography } from './stage/choreography';
 function Card({ def, index }: { def: SectionDef; index: number }) {
   const List = def.numbered ? 'ol' : 'ul';
   return (
-    <article className="card">
+    // Focusable so keyboard users can scroll a card that overflows a short viewport.
+    <article className="card" tabIndex={0} aria-labelledby={`${def.id}-title`}>
       <div className="card-tag">
         <span className="bubble">
           <b>{index}</b>
@@ -21,7 +22,7 @@ function Card({ def, index }: { def: SectionDef; index: number }) {
         </span>
         <span className="kicker">{def.kicker}</span>
       </div>
-      <h2>{def.title}</h2>
+      <h2 id={`${def.id}-title`}>{def.title}</h2>
       {def.body && <p className="body">{def.body}</p>}
       {def.points && (
         <List className="points">
@@ -77,7 +78,8 @@ export function App() {
     let lenis: Lenis | null = null;
     let raf: ((t: number) => void) | null = null;
     if (!reduced) {
-      lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 0.9 });
+      // allowNestedScroll: copy cards overflow on short viewports and must scroll with the wheel, not the page.
+      lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 0.9, allowNestedScroll: true });
       lenis.on('scroll', ScrollTrigger.update);
       raf = (t) => lenis!.raf(t * 1000);
       gsap.ticker.add(raf);
@@ -147,7 +149,7 @@ export function App() {
         <ol>
           {SECTIONS.map((s, i) => (
             <li key={s.id} className={i === active ? 'on' : undefined}>
-              <button onClick={() => jump(s.id)}>
+              <button onClick={() => jump(s.id)} aria-current={i === active ? 'location' : undefined}>
                 <span className="rail-no">{s.sheet}</span>
                 <span className="rail-name">{s.rail}</span>
               </button>
