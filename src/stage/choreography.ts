@@ -263,15 +263,18 @@ export function buildChoreography(sections: SectionDef[], refs: Refs): () => voi
     });
 
     // Once the monitor has settled, the dashboard runs its demo loop (desktop only: no side panels on phones).
+    // The loop repeats forever, so it never starts for visitors who ask for reduced motion.
     const demo = createDashboardDemo(refs.svg);
     stopDemo = demo.stop;
     const dash = refs.sections[sections.findIndex((s) => s.id === 'dashboard')];
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     ScrollTrigger.create({
       trigger: dash,
       start: () => `top+=${(dash.offsetHeight - vh()) * 0.65} top`,
       endTrigger: refs.sections.at(-1),
       end: 'bottom bottom',
-      onToggle: (self) => (self.isActive && vw() >= MOBILE_BP ? demo.play() : demo.stop()),
+      onToggle: (self) =>
+        self.isActive && vw() >= MOBILE_BP && !reducedMotion.matches ? demo.play() : demo.stop(),
     });
 
     // Intro: the sheet "prints" in.
