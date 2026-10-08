@@ -13,7 +13,8 @@ import { buildChoreography } from './stage/choreography';
 function Card({ def, index }: { def: SectionDef; index: number }) {
   const List = def.numbered ? 'ol' : 'ul';
   return (
-    <article className="card">
+    // Focusable so keyboard users can scroll a card that overflows a short viewport.
+    <article className="card" tabIndex={0} aria-labelledby={`${def.id}-title`}>
       <div className="card-tag">
         <span className="bubble">
           <b>{index}</b>
@@ -21,7 +22,7 @@ function Card({ def, index }: { def: SectionDef; index: number }) {
         </span>
         <span className="kicker">{def.kicker}</span>
       </div>
-      <h2>{def.title}</h2>
+      <h2 id={`${def.id}-title`}>{def.title}</h2>
       {def.body && <p className="body">{def.body}</p>}
       {def.points && (
         <List className="points">
