@@ -25,9 +25,10 @@ export function ThemeToggle() {
   };
 
   return (
-    <div className="theme-toggle" role="radiogroup" aria-label="Sheet colour">
+    // Pressed buttons, not role="radio": radios promise arrow-key navigation these plain buttons do not have.
+    <div className="theme-toggle" role="group" aria-label="Sheet colour">
       {(['black', 'blue'] as const).map((t) => (
-        <button key={t} role="radio" aria-checked={theme === t} className={theme === t ? 'on' : undefined} onClick={() => choose(t)}>
+        <button key={t} type="button" aria-pressed={theme === t} className={theme === t ? 'on' : undefined} onClick={() => choose(t)}>
           <span className={`swatch swatch-${t}`} />
           <span className="label">{t}</span>
         </button>
