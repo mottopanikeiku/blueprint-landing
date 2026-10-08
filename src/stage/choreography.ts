@@ -220,7 +220,8 @@ const BUILDERS: Record<string, Builder> = {
       0,
     );
     tl.to($('.chrome, .status-extra'), { opacity: 1, duration: 0.3 }, 0.3);
-    tl.to($('.rail'), { opacity: 0, duration: 0.15 }, 0);
+    // autoAlpha also sets visibility: hidden at 0, so the invisible rail stops taking clicks and focus.
+    tl.to($('.rail'), { autoAlpha: 0, duration: 0.15 }, 0);
   },
 
   access(tl, $) {
