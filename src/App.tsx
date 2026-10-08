@@ -149,7 +149,7 @@ export function App() {
         <ol>
           {SECTIONS.map((s, i) => (
             <li key={s.id} className={i === active ? 'on' : undefined}>
-              <button onClick={() => jump(s.id)}>
+              <button onClick={() => jump(s.id)} aria-current={i === active ? 'location' : undefined}>
                 <span className="rail-no">{s.sheet}</span>
                 <span className="rail-name">{s.rail}</span>
               </button>
