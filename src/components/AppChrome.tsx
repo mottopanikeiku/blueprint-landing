@@ -5,7 +5,6 @@ import { BrandMark } from './Brand';
 function layerGroup(name: string): string | undefined {
   if (name.startsWith('M-HVAC')) return 'mech';
   if (name.startsWith('A-PKNG')) return 'pkng';
-  if (name === 'A-FURN' || name === 'P-FIXT') return 'furn';
   return undefined;
 }
 
