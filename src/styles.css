@@ -1509,8 +1509,14 @@ ol.points li::before {
   .wordmark-tag {
     display: none;
   }
+  /* Visually hidden, not display: none, so the swatch-only buttons keep an accessible name. */
   .theme-toggle .label {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
   .nav-right {
     gap: 6px;
