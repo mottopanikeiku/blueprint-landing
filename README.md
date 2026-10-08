@@ -26,7 +26,7 @@ Open the local URL printed by Vite. `npm run dev` is the alternative for editing
 
 - [Section copy](src/content.tsx) also defines the camera stations in sheet coordinates. [Camera math](src/stage/camera.ts) fits them into the viewport; [styles](src/styles.css) hold the black and blue themes.
 - The brand remains `[Product]`, an intentional placeholder. Fonts are bundled locally through Fontsource.
-- The optional [contact form](src/components/AccessForm.tsx) posts name, email, firm, role and drawing interests to `VITE_EARLY_ACCESS_ENDPOINT`. It reports an error when no endpoint is configured. `.env.example` documents the variable; local environment files are ignored. Any configured endpoint is public in the browser bundle, so never put credentials there. No submitted contact data is stored in this repository.
+- The optional [contact form](src/components/AccessForm.tsx) posts name, email, firm, role and drawing interests to `VITE_EARLY_ACCESS_ENDPOINT`. Without an endpoint the form renders disabled with a notice; the live page currently has none. `.env.example` documents the variable; local environment files are ignored. Any configured endpoint is public in the browser bundle, so never put credentials there. No submitted contact data is stored in this repository.
 - The workflow builds pull requests and deploys pushes to `main` to [GitHub Pages](https://mottopanikeiku.github.io/blueprint-landing/). Relative asset paths support the repository subpath.
 
 ## Limitations
